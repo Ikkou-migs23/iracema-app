@@ -1,0 +1,619 @@
+<CustomLabel@Label>:
+    text_size: self.width, None
+    size_hint_y: None
+    height: self.texture_size[1]
+    padding: (dp(10), dp(10))
+    color: 0.35, 0.25, 0.2, 1
+
+<ContentWithImage@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: self.minimum_height
+    spacing: dp(20)
+    padding: dp(10)
+
+<NavBar@BoxLayout>:
+    orientation: 'horizontal'
+    padding: [dp(10), dp(5)]
+    spacing: dp(15)
+    canvas.before:
+        Color:
+            rgba: 0.89, 0.75, 0.58, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    Button:
+        size_hint: None, None
+        size: dp(70), dp(70)
+        pos_hint: {'center_y': 0.5}
+        background_color: 0, 0, 0, 0
+        on_press: 
+            app.set_previous_screen('main')
+            app.root.current = 'main'
+        Image:
+            source: r'/home/migs/Documentos/migs/programing/Iracema/Iracema-windows/img/iracema.png'
+            size: dp(120), dp(80)
+            center: self.parent.center
+    
+    Label:
+        text: 'Iracema'
+        color: 1, 1, 1, 1
+        font_size: dp(24)
+        bold: True
+        size_hint_x: 1
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        pos_hint: {'center_y': 0.5}
+        height: dp(40)
+    
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_x: None
+        width: self.minimum_width
+        pos_hint: {'center_y': 0.5}
+        spacing: dp(15)
+        height: dp(40)
+        
+        RoundedButton:
+            text: 'Mapa'
+            color: 0.2, 0.18, 0.15, 1
+            bold: True
+            size_hint: None, None
+            size: dp(80), dp(35)
+            pos_hint: {'center_y': 0.5}
+            on_press: 
+                app.set_previous_screen('main')
+                app.root.current = 'map_selection'
+            
+        RoundedButton:
+            text: 'Ler'
+            color: 0.2, 0.18, 0.15, 1
+            bold: True
+            size_hint: None, None
+            size: dp(80), dp(35)
+            pos_hint: {'center_y': 0.5}
+            on_press: 
+                app.set_previous_screen('main')
+                app.root.current = 'reader'
+            
+        RoundedButton:
+            text: 'Download'
+            color: 0.2, 0.18, 0.15, 1
+            bold: True
+            size_hint: None, None
+            size: dp(100), dp(35)
+            pos_hint: {'center_y': 0.5}
+            on_press: app.download_book()
+            
+        RoundedButton:
+            text: 'Sobre'
+            color: 0.2, 0.18, 0.15, 1
+            bold: True
+            size_hint: None, None
+            size: dp(80), dp(35)
+            pos_hint: {'center_y': 0.5}
+            on_press: 
+                app.set_previous_screen('main')
+                app.root.current = 'about'
+
+<BackButton@ImageButton>:
+    size_hint: None, None
+    size: dp(60), dp(40)
+    Image:
+        source: r'/home/migs/Documentos/migs/programing/Iracema/Iracema-windows/img/voltar-icon.png'
+        size: dp(45), dp(60)
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+
+<NavArrowButton@ImageButton>:
+    size_hint: None, None
+    size: dp(50), dp(50)
+
+<MainScreen>:
+    name: 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)
+                spacing: dp(20)
+                
+                CustomLabel:
+                    text: 'Iracema – Um Encontro Poético entre Natureza e História'
+                    font_size: dp(24)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    halign: 'center'
+                
+                ContentWithImage:
+                    Image:
+                        source: r'/home/migs/Documentos/migs/programing/Iracema/Iracema-windows/img/iracema_livro.jpg'
+                        size_hint_x: 0.4
+                        size_hint_y: None
+                        height: dp(200)
+                        allow_stretch: True
+                    
+                    CustomLabel:
+                        text: 'Iracema, publicado em 1865, é uma das obras mais emblemáticas do romantismo brasileiro, escrita por José de Alencar, um dos maiores nomes da literatura nacional. O livro faz parte da chamada "trilogia indianista" do autor, ao lado de O Guarani e Ubirajara, e representa uma tentativa de construir uma identidade nacional a partir das origens indígenas do Brasil.'
+                        font_size: dp(16)
+                        line_height: 1.6
+                        color: 0.35, 0.25, 0.2, 1
+                
+                ContentWithImage:
+                    Image:
+                        source: r'/home/migs/Documentos/migs/programing/Iracema/Iracema-windows/img/jose_alencar.jpg'
+                        size_hint_x: 0.4
+                        size_hint_y: None
+                        height: dp(200)
+                        allow_stretch: True
+                    
+                    CustomLabel:
+                        text: 'O Autor: [b]José de Alencar[/b]\n\nJosé de Alencar (1829–1877) foi advogado, jornalista, político e romancista. Sua obra literária é marcada por um forte nacionalismo e por uma busca estética que valoriza as raízes brasileiras. Com Iracema, ele inaugura uma narrativa lírica e simbólica que mistura história, mito e poesia, criando uma verdadeira epopeia da formação do Ceará.'
+                        markup: True
+                        font_size: dp(16)
+                        line_height: 1.6
+                        color: 0.35, 0.25, 0.2, 1
+                
+                CustomLabel:
+                    text: '[b]Personagens Principais[/b]\n\nIracema: A protagonista que dá nome ao livro. É uma jovem indígena da tribo dos Tabajaras, descrita como de beleza estonteante, com "cabelos mais negros que a asa da graúna" e "lábios mais doces que o mel da jati". Iracema é a virgem consagrada ao deus Tupã, guardiã do segredo da jurema, e representa a pureza, a natureza e a alma indígena.\n\nMartim: Um colonizador português, guerreiro cristão e figura central da narrativa. Ele se apaixona por Iracema, e seu relacionamento com ela simboliza o encontro — e o conflito — entre o mundo europeu e o indígena. Martim é retratado como nobre, corajoso, mas também como alguém que carrega o peso da conquista.\n\nAraquém: Pai de Iracema e pajé da tribo dos Tabajaras. Ele representa a sabedoria ancestral e o respeito às tradições indígenas.\n\nPoti: Amigo fiel de Martim, pertencente à tribo dos Pitiguaras, inimigos dos Tabajaras. Poti é um personagem que simboliza a aliança entre o indígena e o europeu, sendo também um retrato da bravura e da lealdade.'
+                    markup: True
+                    font_size: dp(16)
+                    line_height: 1.6
+                    color: 0.35, 0.25, 0.2, 1
+                
+                CustomLabel:
+                    text: '[b]Enredo e Temas[/b]\n\nA história gira em torno do amor proibido entre Iracema e Martim. Ao se apaixonar por ele, Iracema rompe com suas obrigações religiosas e tribais, o que desencadeia uma série de conflitos. O casal se refugia entre os Pitiguaras, e Iracema dá à luz Moacir, fruto da união entre os dois mundos. No entanto, a felicidade é breve: Iracema morre de tristeza e saudade, deixando Martim desolado.\n\nO romance é profundamente simbólico. Iracema representa a terra virgem, o Brasil antes da colonização. Martim encarna o colonizador europeu. Moacir, o filho, é o "filho da dor", o primeiro cearense, símbolo do nascimento de uma nova identidade brasileira.'
+                    markup: True
+                    font_size: dp(16)
+                    line_height: 1.6
+                    color: 0.35, 0.25, 0.2, 1
+                
+                CustomLabel:
+                    text: '[b]Estilo e Linguagem[/b]\n\nA linguagem de Iracema é poética, cheia de metáforas, aliterações e imagens da natureza. Alencar constrói um texto que se aproxima da prosa poética, com ritmo cadenciado e forte musicalidade. A ambientação é exuberante, com descrições vívidas da fauna, flora e paisagens do sertão cearense.'
+                    markup: True
+                    font_size: dp(16)
+                    line_height: 1.6
+                    color: 0.35, 0.25, 0.2, 1
+                
+                CustomLabel:
+                    text: '[b]Contexto Histórico e Cultural[/b]\n\nIracema não é apenas uma história de amor. É uma alegoria da colonização, da perda da cultura indígena e da formação da identidade brasileira. Ao idealizar o indígena e a natureza, Alencar contribui para a construção de um imaginário nacional que valoriza as raízes do país, mesmo que romantizadas.'
+                    markup: True
+                    font_size: dp(16)
+                    line_height: 1.6
+                    color: 0.35, 0.25, 0.2, 1
+
+<MapSelectionScreen>:
+    name: 'map_selection'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 1
+            padding: dp(20)
+            spacing: dp(20)
+            
+            Widget:
+                size_hint_y: 0.3
+            
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: dp(300)
+                padding: dp(20)
+                spacing: dp(30)
+                pos_hint: {'center_y': 0.5}
+                
+                Label:
+                    text: 'Selecione o Tipo de Mapa'
+                    font_size: dp(24)
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(50)
+                    halign: 'center'
+                    valign: 'middle'
+                
+                RoundedButton:
+                    text: 'Locais do Livro'
+                    font_size: dp(20)
+                    color: 0.2, 0.18, 0.15, 1
+                    size_hint_y: None
+                    height: dp(60)
+                    on_press: 
+                        app.set_previous_screen('map_selection')
+                        app.root.current = 'book_map'
+                
+                RoundedButton:
+                    text: 'Locais do Autor'
+                    font_size: dp(20)
+                    color: 0.2, 0.18, 0.15, 1
+                    size_hint_y: None
+                    height: dp(60)
+                    on_press: 
+                        app.set_previous_screen('map_selection')
+                        app.root.current = 'author_map'
+            
+            Widget:
+                size_hint_y: 0.3
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: 
+                    app.set_previous_screen('main')
+                    app.root.current = 'main'
+
+<BookMapScreen>:
+    name: 'book_map'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(5)
+            spacing: dp(5)
+            
+            Label:
+                text: 'Mapa - Locais do Livro Iracema'
+                font_size: dp(20)
+                bold: True
+                color: 0.35, 0.25, 0.2, 1
+                size_hint_y: None
+                height: dp(40)
+                halign: 'center'
+            
+            BoxLayout:
+                id: map_container
+                size_hint_y: 1
+                padding: dp(2)
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: 
+                    app.set_previous_screen('map_selection')
+                    app.root.current = 'map_selection'
+
+<AuthorMapScreen>:
+    name: 'author_map'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(5)
+            spacing: dp(5)
+            
+            Label:
+                text: 'Mapa - Locais do Autor José de Alencar'
+                font_size: dp(20)
+                bold: True
+                color: 0.35, 0.25, 0.2, 1
+                size_hint_y: None
+                height: dp(40)
+                halign: 'center'
+            
+            BoxLayout:
+                id: map_container
+                size_hint_y: 1
+                padding: dp(2)
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: 
+                    app.set_previous_screen('map_selection')
+                    app.root.current = 'map_selection'
+
+<LocationDetailScreen>:
+    name: 'location_detail'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)
+                spacing: dp(15)
+                
+                Label:
+                    id: location_title
+                    text: ''
+                    font_size: dp(24)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(60)
+                    text_size: self.width, None
+                    halign: 'center'
+                
+                Image:
+                    id: location_image
+                    source: ''
+                    size_hint_y: None
+                    height: dp(200)
+                    allow_stretch: True
+                    keep_ratio: True
+                
+                Label:
+                    id: location_desc
+                    text: ''
+                    font_size: dp(16)
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    line_height: 1.4
+                
+                Label:
+                    text: 'Referência:'
+                    font_size: dp(18)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(30)
+                
+                Label:
+                    id: location_reference
+                    text: ''
+                    font_size: dp(16)
+                    color: 0.5, 0.3, 0.2, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    line_height: 1.4
+                    italic: True
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: app.go_back()
+
+<AboutScreen>:
+    name: 'about'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(30)
+                spacing: dp(20)
+                
+                Label:
+                    text: 'Sobre o Projeto Iracema'
+                    font_size: dp(24)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(50)
+                
+                Label:
+                    text: 'Este aplicativo foi desenvolvido com o objetivo de promover e facilitar o acesso à obra clássica "Iracema" de José de Alencar, um dos maiores expoentes da literatura brasileira.'
+                    font_size: dp(16)
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    line_height: 1.4
+                
+                Label:
+                    text: 'Funcionalidades:'
+                    font_size: dp(18)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(30)
+                
+                Label:
+                    text: '• Leitura sobre a obra e o autor\n• Mapas interativos com locais importantes\n• Download gratuito do livro\n• Informações detalhadas sobre locais históricos\n• Leitor integrado do livro'
+                    font_size: dp(16)
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                
+                Label:
+                    text: 'Desenvolvimento:'
+                    font_size: dp(18)
+                    bold: True
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: dp(30)
+                
+                Label:
+                    text: 'Este projeto foi desenvolvido usando Python e framework Kivy, com o intuito educacional de difundir a literatura brasileira e demonstrar o potencial do desenvolvimento mobile com Python.'
+                    font_size: dp(16)
+                    color: 0.35, 0.25, 0.2, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    line_height: 1.4
+
+                Image:
+                    source: r'/home/migs/Documentos/migs/programing/Iracema/Iracema-windows/img/migs.jpg'
+                    size_hint_y: None
+                    height: dp(200)
+                    allow_stretch: True
+                    keep_ratio: True
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: 
+                    app.set_previous_screen('main')
+                    app.root.current = 'main'
+
+<ReaderScreen>:
+    name: 'reader'
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        NavBar:
+            size_hint_y: None
+            height: dp(80)
+            
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(10)
+            spacing: dp(10)
+            
+            NavArrowButton:
+                on_press: root.prev_page()
+                Image:
+                    source: 'images/prev_arrow.png'
+                    size: dp(25), dp(25)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            
+            NavArrowButton:
+                on_press: root.zoom_out()
+                Image:
+                    source: 'images/zoom_out.png'
+                    size: dp(25), dp(25)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            
+            Label:
+                id: page_label
+                text: 'Página 1 de 1'
+                size_hint_x: 1
+                halign: 'center'
+                valign: 'middle'
+                color: 0.35, 0.25, 0.2, 1
+                bold: True
+            
+            NavArrowButton:
+                on_press: root.zoom_in()
+                Image:
+                    source: 'images/zoom_in.png'
+                    size: dp(25), dp(25)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            
+            NavArrowButton:
+                on_press: root.next_page()
+                Image:
+                    source: 'images/next_arrow.png'
+                    size: dp(25), dp(25)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+        
+        ScrollView:
+            size_hint_y: 1
+            do_scroll_x: True
+            do_scroll_y: True
+            
+            BoxLayout:
+                id: reader_container
+                orientation: 'vertical'
+                size_hint: None, None
+                size: self.minimum_size
+                padding: dp(20)
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(20)
+            
+            BackButton:
+                on_press: app.go_back()
